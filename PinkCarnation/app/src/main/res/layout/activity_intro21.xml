@@ -34,27 +34,31 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginTop="300dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="70dp"
-            android:text="기기ID:" />
+            android:layout_weight="20"
+            android:text="기기ID:"
+            android:textColor="@android:color/holo_red_light"/>
 
         <EditText
             android:id="@+id/editId"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="50"
             android:enabled="false"
-            android:width="170dp"/>
+            android:width="170dp"
+            android:text="12345abcdfe"/>
         <Button
             android:id="@+id/btnCopy"
             android:onClick="btnCopyClicked"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
+            android:layout_weight="20"
             android:backgroundTint="#fa9494"
             android:text="복사" />
     </LinearLayout>
@@ -64,24 +68,41 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginTop="350dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="70dp"
+            android:layout_weight="20"
             android:text="제어코드:"
-            />
+            android:textColor="@android:color/holo_red_light"/>
 
         <EditText
             android:id="@+id/editPw"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:width="170dp"
+            android:layout_weight="50"
             android:ems="6"
             android:inputType="numberPassword"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="20" />
     </LinearLayout>
 
+    <Button
+        android:id="@+id/btnNext"
+        android:onClick="btnNextClicked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
+        android:backgroundTint="#fa9494"
+        android:text="다음" />
 
 </RelativeLayout>

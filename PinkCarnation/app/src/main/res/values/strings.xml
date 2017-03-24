@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">핑카: 핑크 카네이션</string>
+
+    <string-array name="showtimes">
+        <item>5분</item>
+        <item>10분</item>
+        <item>30분</item>
+        <item>1시간</item>
+    </string-array>
+
+    <string-array name="transitions">
+        <item>슬라이드</item>
+        <item>리졸브</item>
+        <item>랜덤</item>
+    </string-array>
 </resources>
