@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.shinhan.pinkcarnation.Intro10Activity"
+    android:background="@drawable/app_bg">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo_full"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:maxWidth="600dp"
+        android:maxHeight="40dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"  />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="누가 사용하나요?"
+        android:textSize="16dp"
+        android:textColor="#f71da4"/>
+
+    <Button
+        android:id="@+id/btnParent"
+        android:onClick="btnParentClicked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="80dp"
+        android:layout_marginLeft="60dp"
+        android:backgroundTint="#fa9494"
+        android:text="부모" />
+    <Button
+        android:id="@+id/btnChild"
+        android:onClick="btnChildClicked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="false"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="80dp"
+        android:layout_marginRight="60dp"
+        android:backgroundTint="#fa9494"
+        android:text="자녀" />
+</RelativeLayout>
