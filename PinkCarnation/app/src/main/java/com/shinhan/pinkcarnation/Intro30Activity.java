@@ -29,6 +29,8 @@ public class Intro30Activity extends AppCompatActivity {
             intent = new Intent(this, ChildMainActivity.class);
         }
 
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+        finish(); // call this to finish the current activity
     }
 }

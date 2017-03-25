@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.shinhan.pinkcarnation.Intro10Activity"
-    android:background="@drawable/bg_settings2"
+    android:background="@drawable/bg_settings"
     android:orientation="vertical">
 
     <LinearLayout
@@ -247,8 +247,10 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:background="@drawable/textbox"
+                android:minLines="1"
+                android:maxLines="1"
                 android:gravity="center_vertical"
-                android:text="1234abcd"/>
+                android:text=""/>
 
         </LinearLayout>
         <TextView
@@ -279,7 +281,7 @@
                 android:padding="10dp"
                 android:background="@drawable/textbox"
                 android:gravity="center_vertical"
-                android:text="88888888"/>
+                android:text=""/>
 
         </LinearLayout>
         <TextView

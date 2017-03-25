@@ -17,7 +17,7 @@
         android:id="@+id/settings_icon"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:background="@drawable/icon_settings2"
+        android:background="@drawable/icon_settings"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"

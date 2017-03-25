@@ -9,12 +9,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class ParentSettingActivity extends AppCompatActivity {
 
     // 쉐어드 프리퍼런스 접근 클래스
     SimpleStorage ss = null;
+
+    // UI 객체 선언
+    TextView txtDeviceId = null;
+    TextView txtAccessCode = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +28,14 @@ public class ParentSettingActivity extends AppCompatActivity {
 
         // 쉐어드 프리퍼런스 초기화
         ss = new SimpleStorage(this);
+
+        // UI 객체 할당
+        txtDeviceId = (TextView)findViewById(R.id.option08);
+        txtAccessCode = (TextView)findViewById(R.id.option09);
+
+        // UI 초기 데이타 세팅
+        txtDeviceId.setText(ss.get("Main", "DeviceID", ""));
+        txtAccessCode.setText(ss.get("Main", "AccessCode", ""));
     }
 
 

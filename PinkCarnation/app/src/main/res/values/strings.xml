@@ -9,6 +9,7 @@
     </string-array>
 
     <string-array name="transitions">
+        <item>즉시변경</item>
         <item>슬라이드</item>
         <item>리졸브</item>
         <item>랜덤</item>

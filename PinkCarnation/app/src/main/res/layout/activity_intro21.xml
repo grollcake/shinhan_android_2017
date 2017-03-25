@@ -21,7 +21,7 @@
         android:id="@+id/imageView3" />
 
     <TextView
-        android:id="@+id/msg"
+        android:id="@+id/txtStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -43,16 +43,19 @@
             android:layout_height="wrap_content"
             android:layout_weight="20"
             android:text="기기ID:"
-            android:textColor="@android:color/holo_red_light"/>
-
-        <EditText
-            android:id="@+id/editId"
+            android:textColor="@android:color/black"/>
+        <TextView
+            android:id="@+id/txtDeviceid"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="50"
-            android:enabled="false"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@drawable/textbox"
             android:width="170dp"
-            android:text="12345abcdfe"/>
+            android:text="할당 받는 중..."
+            android:minLines="1"
+            android:maxLines="1"
+            android:textColor="@android:color/black"/>
         <Button
             android:id="@+id/btnCopy"
             android:onClick="btnCopyClicked"
@@ -78,15 +81,18 @@
             android:layout_height="wrap_content"
             android:layout_weight="20"
             android:text="제어코드:"
-            android:textColor="@android:color/holo_red_light"/>
+            android:textColor="@android:color/black"/>
 
         <EditText
             android:id="@+id/editPw"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="50"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@drawable/textbox"
             android:ems="6"
-            android:inputType="numberPassword"/>
+            android:inputType="numberDecimal"
+            android:textColor="@android:color/black"/>
 
         <TextView
             android:layout_width="0dp"
