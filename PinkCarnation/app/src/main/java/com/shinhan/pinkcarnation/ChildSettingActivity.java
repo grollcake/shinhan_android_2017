@@ -2,6 +2,7 @@ package com.shinhan.pinkcarnation;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 public class ChildSettingActivity extends AppCompatActivity {
 
@@ -15,5 +16,9 @@ public class ChildSettingActivity extends AppCompatActivity {
 
         // 쉐어드 프리퍼런스 초기화
         ss = new SimpleStorage(this);
+    }
+
+    public void btnBackClicked(View view) {
+        finish();
     }
 }

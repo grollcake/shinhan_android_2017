@@ -1,9 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.shinhan.pinkcarnation.ChildMainActivity">
+    tools:context="com.shinhan.pinkcarnation.Intro10Activity"
+    android:background="@drawable/bg_settings2"
+    android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:src="@drawable/logo_full"
+            android:layout_centerVertical="true"/>
+        <ImageButton
+            android:id="@+id/settings_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/icon_settings2"
+            android:onClick="onSettingsClicked"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="20dp"
+        android:orientation="vertical"
+        android:background="#50000000">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="30"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:textColor="#ffffff"
+                android:backgroundTint="@android:color/holo_orange_light"
+                android:text="대상기기"/>
+            <TextView
+                android:id="@+id/txtDeviceName"
+                android:layout_width="0dp"
+                android:layout_weight="50"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="@drawable/textbox"
+                android:gravity="center_vertical"
+                android:text="1234abcd"/>
+            <Button
+                android:id="@+id/btnDeviceidChange"
+                android:onClick="btnDeviceidChangeClicked"
+                android:layout_width="0dp"
+                android:layout_weight="20"
+                android:layout_height="match_parent"
+                android:backgroundTint="#fa9494"
+                android:text="변경" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="30"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:textColor="#ffffff"
+                android:backgroundTint="@android:color/holo_orange_light"
+                android:text="사진전송"/>
+            <TextView
+                android:id="@+id/txtPhoto"
+                android:layout_width="0dp"
+                android:layout_weight="50"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="@drawable/textbox"
+                android:gravity="center_vertical"
+                android:text="에펠탑앞.jpg"/>
+            <Button
+                android:id="@+id/btnPhotoSend"
+                android:onClick="btnPhotoSendClicked"
+                android:layout_width="0dp"
+                android:layout_weight="20"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#fa9494"
+                android:text="전송" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="30"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="50"
+                android:layout_height="200dp"
+                android:background="@drawable/textbox"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="20"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="30"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/sendStatus"
+                android:layout_width="0dp"
+                android:layout_weight="70"
+                android:layout_height="wrap_content"
+                android:text="잘 전송했습니다."/>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

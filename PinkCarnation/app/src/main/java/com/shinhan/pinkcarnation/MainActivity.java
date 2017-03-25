@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
             }
         } else {
             intent = new Intent(MainActivity.this, Intro10Activity.class);
-        }
+    }
 
         // 2초간 멈춘 후에 다음 페이지로 넘어간다.
         Handler handler = new Handler();

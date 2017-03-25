@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -53,6 +52,7 @@
                 android:backgroundTint="@android:color/holo_orange_light"
                 android:text="항상 실행"/>
             <Switch
+                android:id="@+id/option01"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"/>
         </LinearLayout>
@@ -78,6 +78,7 @@
                 android:backgroundTint="@android:color/holo_orange_light"
                 android:text="밝기 감지"/>
             <Switch
+                android:id="@+id/option02"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"/>
         </LinearLayout>
@@ -103,6 +104,7 @@
                 android:backgroundTint="@android:color/holo_orange_light"
                 android:text="소리 알람"/>
             <Switch
+                android:id="@+id/option03"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"/>
         </LinearLayout>
@@ -128,6 +130,7 @@
                 android:backgroundTint="@android:color/holo_orange_light"
                 android:text="최근 사진"/>
             <Switch
+                android:id="@+id/option04"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"/>
 
@@ -154,6 +157,7 @@
                 android:backgroundTint="@android:color/holo_orange_light"
                 android:text="날씨 및 시간"/>
             <Switch
+                android:id="@+id/option05"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"/>
 
@@ -180,7 +184,7 @@
                 android:backgroundTint="@android:color/holo_orange_light"
                 android:text="화면 전환"/>
             <Spinner
-                android:id="@+id/spinner01"
+                android:id="@+id/option06"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="20"
@@ -209,7 +213,7 @@
                 android:backgroundTint="@android:color/holo_orange_light"
                 android:text="출력 시간"/>
             <Spinner
-                android:id="@+id/spinner02"
+                android:id="@+id/option07"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="20"
@@ -238,9 +242,11 @@
                 android:backgroundTint="@android:color/holo_orange_light"
                 android:text="기기ID"/>
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="30"
+                android:id="@+id/option08"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="@drawable/textbox"
                 android:gravity="center_vertical"
                 android:text="1234abcd"/>
 
@@ -267,9 +273,11 @@
                 android:backgroundTint="@android:color/holo_orange_light"
                 android:text="제어코드"/>
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="30"
+                android:id="@+id/option09"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="@drawable/textbox"
                 android:gravity="center_vertical"
                 android:text="88888888"/>
 
@@ -291,8 +299,9 @@
             <Button
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:enabled="false"
+                android:enabled="true"
                 android:backgroundTint="@android:color/holo_red_light"
+                android:textColor="#ffffff"
                 android:text="초기화"
                 android:onClick="btnResetClicked"/>
             <TextView
