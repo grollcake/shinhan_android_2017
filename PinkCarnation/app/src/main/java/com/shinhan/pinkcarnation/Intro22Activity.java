@@ -11,6 +11,10 @@ public class Intro22Activity extends AppCompatActivity {
     // 쉐어드 프리퍼런스 접근 클래스
     SimpleStorage ss = null;
 
+    // 화면 UI 객체 선언
+    EditText editAccessCode = null;
+    EditText editDeviceId = null;
+
     String deviceId = null;
     String targetId = null;
     String accessCode = null;
@@ -22,15 +26,16 @@ public class Intro22Activity extends AppCompatActivity {
 
         // 쉐어드 프리퍼런스 초기화
         ss = new SimpleStorage(this);
+
+        // 화면 UI 객체 변수할당
+        editDeviceId = (EditText) findViewById(R.id.editDeviceId);
+        editAccessCode = (EditText) findViewById(R.id.editAccessCode);
     }
 
     public void btnNextClicked(View view) {
         // 데이타 유효성 검사
-        EditText editId = (EditText)findViewById(R.id.editId);
-        EditText editPw = (EditText)findViewById(R.id.editPw);
-
-        targetId = editId.getText().toString();
-        accessCode = editPw.getText().toString();
+        targetId = editDeviceId.getText().toString();
+        accessCode = editAccessCode.getText().toString();
 
         if (targetId == null || targetId.isEmpty()) {
             Toast.makeText(this, "오류! 기기ID가 공백입니다.", Toast.LENGTH_SHORT).show();

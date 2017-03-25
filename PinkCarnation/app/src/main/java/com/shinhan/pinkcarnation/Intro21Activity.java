@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +34,7 @@ public class Intro21Activity extends AppCompatActivity {
     TextView txtDeviceId = null;
     TextView txtStatus = null;
     EditText editPw = null;
+    ProgressBar progressBar = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,7 @@ public class Intro21Activity extends AppCompatActivity {
         txtDeviceId = (TextView)findViewById(R.id.txtDeviceid);
         txtStatus = (TextView)findViewById(R.id.txtStatus);
         editPw = (EditText)findViewById(R.id.editPw);
+        progressBar = (ProgressBar)findViewById(R.id.progressBar);
 
         // 화면 UI 요소 초기상태 세팅
         editPw.setEnabled(false);
@@ -195,12 +198,16 @@ public class Intro21Activity extends AppCompatActivity {
             else if (this.mode.equals("2")) {
                 txtStatus.setText("패스워드를 등록 중입니다. 잠시만 기다려주세요.");
             }
+            progressBar.setVisibility(View.VISIBLE);
         }
 
         // 백그라운드 작업 종료 후 처리되는 부분
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+
+            progressBar.setVisibility(View.INVISIBLE);
+
             Log.d("server-response", s);
 
             if (this.mode.equals("1")) {
