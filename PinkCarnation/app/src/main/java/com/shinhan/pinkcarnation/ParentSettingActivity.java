@@ -57,4 +57,8 @@ public class ParentSettingActivity extends AppCompatActivity {
         alert.setTitle("주의");
         alert.show();
     }
+
+    public void btnBackClicked(View view) {
+        finish();
+    }
 }

@@ -8,18 +8,25 @@
     android:background="@drawable/bg_settings2"
     android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/logo_full"
-        android:layout_marginTop="20dp"
-        android:maxWidth="600dp"
-        android:maxHeight="40dp"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        android:layout_gravity="center_horizontal"
-        android:layout_alignParentTop="true"
-        android:layout_marginBottom="20dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/icon_back"
+            android:layout_gravity="center"
+            android:onClick="btnBackClicked"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:paddingRight="20dp"
+            android:src="@drawable/logo_full"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -35,14 +42,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:orientation="horizontal">
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="45"
+                android:layout_weight="20"
                 android:enabled="false"
                 android:textColor="#ffffff"
                 android:backgroundTint="@android:color/holo_orange_light"
@@ -50,24 +57,26 @@
             <Switch
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="40"/>
+                android:layout_weight="10"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="10"
-                android:text="..."/>
+                android:layout_weight="30"
+                android:text="항상 실행된 상태를 유지합니다"
+                android:textColor="#ffffff"
+                android:gravity="center_vertical"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:orientation="horizontal">
             <Button
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="45"
+                android:layout_weight="20"
                 android:enabled="false"
                 android:textColor="#ffffff"
                 android:backgroundTint="@android:color/holo_orange_light"
@@ -75,24 +84,26 @@
             <Switch
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="40" />
+                android:layout_weight="10" />
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="10"
-                android:text="..."/>
+                android:layout_weight="30"
+                android:text="밤에는 밝기를 낮춥니다"
+                android:textColor="#ffffff"
+                android:gravity="center_vertical"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:orientation="horizontal">
             <Button
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="45"
+                android:layout_weight="20"
                 android:enabled="false"
                 android:textColor="#ffffff"
                 android:backgroundTint="@android:color/holo_orange_light"
@@ -100,24 +111,26 @@
             <Switch
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="40" />
+                android:layout_weight="10" />
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="10"
-                android:text="..."/>
+                android:layout_weight="30"
+                android:text="새 사진이 들어오면 경쾌한 소리를 들려줍니다"
+                android:textColor="#ffffff"
+                android:gravity="center_vertical"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:orientation="horizontal">
             <Button
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="45"
+                android:layout_weight="20"
                 android:enabled="false"
                 android:textColor="#ffffff"
                 android:backgroundTint="@android:color/holo_orange_light"
@@ -125,24 +138,26 @@
             <Switch
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="40" />
+                android:layout_weight="10" />
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="10"
-                android:text="..."/>
+                android:layout_weight="30"
+                android:text="최근 사진을 더 자주 보여줍니다"
+                android:textColor="#ffffff"
+                android:gravity="center_vertical"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:orientation="horizontal">
             <Button
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="45"
+                android:layout_weight="20"
                 android:enabled="false"
                 android:textColor="#ffffff"
                 android:backgroundTint="@android:color/holo_orange_light"
@@ -150,24 +165,26 @@
             <Switch
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="40" />
+                android:layout_weight="10" />
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="10"
-                android:text="..."/>
+                android:layout_weight="30"
+                android:text="시간과 날씨를 표시합니다"
+                android:textColor="#ffffff"
+                android:gravity="center_vertical"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:orientation="horizontal">
             <Button
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="45"
+                android:layout_weight="20"
                 android:enabled="false"
                 android:textColor="#ffffff"
                 android:backgroundTint="@android:color/holo_orange_light"
@@ -176,25 +193,27 @@
                 android:id="@+id/spinner01"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="40"
+                android:layout_weight="20"
                 android:entries="@array/transitions"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="10"
-                android:text="..."/>
+                android:layout_weight="20"
+                android:text="사진 전환효과를 선택하세요"
+                android:textColor="#ffffff"
+                android:gravity="center_vertical"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:orientation="horizontal">
             <Button
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="45"
+                android:layout_weight="20"
                 android:enabled="false"
                 android:textColor="#ffffff"
                 android:backgroundTint="@android:color/holo_orange_light"
@@ -203,25 +222,27 @@
                 android:id="@+id/spinner02"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="40"
+                android:layout_weight="20"
                 android:entries="@array/showtimes"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="10"
-                android:text="..."/>
+                android:layout_weight="20"
+                android:text="사진 하나당 표시할 시간입니다"
+                android:textColor="#ffffff"
+                android:gravity="center_vertical"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:orientation="horizontal">
             <Button
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="45"
+                android:layout_weight="20"
                 android:enabled="false"
                 android:textColor="#ffffff"
                 android:backgroundTint="@android:color/holo_orange_light"
@@ -229,26 +250,28 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="40"
+                android:layout_weight="30"
                 android:gravity="center_vertical"
                 android:text="1234abcd"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="10"
-                android:text="..."/>
+                android:text="원격제어에 사용됩니다"
+                android:textColor="#ffffff"
+                android:gravity="center_vertical"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:orientation="horizontal">
             <Button
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="45"
+                android:layout_weight="20"
                 android:enabled="false"
                 android:textColor="#ffffff"
                 android:backgroundTint="@android:color/holo_orange_light"
@@ -256,26 +279,28 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="40"
+                android:layout_weight="30"
                 android:gravity="center_vertical"
                 android:text="88888888"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="10"
-                android:text="..."/>
+                android:text="원격제어용 인증코드 입니다"
+                android:textColor="#ffffff"
+                android:gravity="center_vertical"/>
         </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:orientation="horizontal">
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="45"
+                    android:layout_weight="20"
                     android:enabled="true"
                     android:backgroundTint="@android:color/holo_red_light"
                     android:text="초기화"
@@ -283,9 +308,10 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="50"
+                    android:layout_weight="40"
                     android:gravity="center_vertical"
-                    android:text="모든 설정이 초기화됩니다."/>
+                    android:text="모든 설정이 초기화됩니다."
+                    android:textColor="@android:color/holo_red_light"/>
             </LinearLayout>
             
             <TextView
