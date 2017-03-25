@@ -6,13 +6,16 @@ import android.os.Bundle;
 import android.view.View;
 
 public class Intro30Activity extends AppCompatActivity {
+    // 쉐어드 프리퍼런스 접근 클래스
     SimpleStorage ss = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ss = new SimpleStorage(this);
         setContentView(R.layout.activity_intro30);
+
+        // 쉐어드 프리퍼런스 초기화
+        ss = new SimpleStorage(this);
     }
 
     public void btnNextClicked(View view) {

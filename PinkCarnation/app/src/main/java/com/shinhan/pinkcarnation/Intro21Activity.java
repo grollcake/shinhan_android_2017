@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class Intro21Activity extends AppCompatActivity {
+    // 쉐어드 프리퍼런스 접근 클래스
     SimpleStorage ss = null;
 
     String deviceId = null;
@@ -16,8 +17,10 @@ public class Intro21Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ss = new SimpleStorage(this);
         setContentView(R.layout.activity_intro21);
+
+        // 쉐어드 프리퍼런스 초기화
+        ss = new SimpleStorage(this);
     }
 
     public void btnNextClicked(View view) {
@@ -43,6 +46,7 @@ public class Intro21Activity extends AppCompatActivity {
         ss.put("Main", "Role", "Parent");
         ss.put("Main", "DeviceID", deviceId);
         ss.put("Main", "AccessCode", accessCode);
+        ss.put("Main", "IntroDone", "Yes");
 
         // 다음 화면으로 이동
         Intent intent = new Intent(this, Intro30Activity.class);

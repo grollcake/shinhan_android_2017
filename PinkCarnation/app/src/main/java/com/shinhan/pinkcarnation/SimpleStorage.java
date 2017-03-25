@@ -28,4 +28,20 @@ public class SimpleStorage {
         editor.commit();
         return true;
     }
+
+    public Boolean remove(String category, String key) {
+        SharedPreferences spf = context.getSharedPreferences(category, MODE_PRIVATE);
+        SharedPreferences.Editor editor = spf.edit();
+        editor.remove(key);
+        editor.commit();
+        return true;
+    }
+
+    public Boolean clear(String category) {
+        SharedPreferences spf = context.getSharedPreferences(category, MODE_PRIVATE);
+        SharedPreferences.Editor editor = spf.edit();
+        editor.clear();
+        editor.commit();
+        return true;
+    }
 }
