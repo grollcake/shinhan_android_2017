@@ -66,9 +66,9 @@ public class Intro22Activity extends AppCompatActivity {
 
         // 데이타 저장
         ss.put("Main", "Role", "Child");
-        ss.put("Main", "DeviceID", deviceId);
-        ss.put("Main", "TargetID", targetId);
-        ss.put("Main", "AccessCode", accessCode);
+        ss.put("Main", "DeviceID", this.deviceId);
+        ss.put("Main", "TargetID", this.targetId);
+        ss.put("Main", "AccessCode", this.accessCode);
         ss.put("Main", "IntroDone", "Yes");
 
         // 페이지 이동
@@ -93,8 +93,13 @@ public class Intro22Activity extends AppCompatActivity {
             return;
         }
 
-        linkParentDevice("REQUEST");
-        txtStatus.setText("기기연결을 시도합니다..");
+        if ( this.accessCode == null ) {
+            registerDeviceAccessCode("REQUEST");
+            txtStatus.setText("기기연결을 시도합니다..");
+        } else {
+            getDeviceStatus("REQUEST");
+            txtStatus.setText("기기연결을 시도합니다..");
+        }
     }
 
     private void registerDevice(String s) {
@@ -137,8 +142,10 @@ public class Intro22Activity extends AppCompatActivity {
         }
     }
 
-    private void linkParentDevice(String s) {
+    private void registerDeviceAccessCode(String s) {
         if (s.equals("REQUEST")) {
+            accessCode = editAccessCode.getText().toString();
+
             JSONObject param = new JSONObject();
             JSONObject com = new JSONObject();
             JSONObject biz = new JSONObject();
@@ -148,7 +155,7 @@ public class Intro22Activity extends AppCompatActivity {
                 com.put("targetid", this.deviceId);
                 com.put("accesscode", "");
                 param.put("com", com);
-                biz.put("accesscode", editAccessCode.getText().toString());
+                biz.put("accesscode", accessCode);
                 param.put("biz", biz);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -168,7 +175,7 @@ public class Intro22Activity extends AppCompatActivity {
                 String result = jObject.getString("result");
                 if (result.equals("OK")) {
                     isOk = true;
-                    this.linkOk = true;
+                    this.accessCode = accessCode;
                 } else {
                     errMessage = jObject.getString("error");
                 }
@@ -178,6 +185,52 @@ public class Intro22Activity extends AppCompatActivity {
             if (!isOk) {
                 txtStatus.setText("오류! 등록하지 못했습니다\n" + errMessage);
                 Toast.makeText(this, "오류! 등록하지 못했습니다\n" + errMessage, Toast.LENGTH_SHORT).show();
+            } else {
+                getDeviceStatus("REQUEST");
+            }
+        }
+    }
+
+    private void getDeviceStatus(String s) {
+        if (s.equals("REQUEST")) {
+            accessCode = editAccessCode.getText().toString();
+
+            JSONObject param = new JSONObject();
+            JSONObject com = new JSONObject();
+            try {
+                param.put("cmd", "device_get_status");
+                com.put("deviceid", this.deviceId);
+                com.put("targetid", editTargetId.getText().toString());
+                com.put("accesscode", accessCode);
+                param.put("com", com);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            String paramStr = param.toString();
+            Log.d("param", paramStr);
+
+            new ServiceCall("3").execute("http://ifwind.cf:50000/pinkcar", paramStr);
+        }
+
+        else {
+            boolean isOk = false;
+            String errMessage = "";
+            JSONObject jObject = null;
+            try {
+                jObject = new JSONObject(s);
+                String result = jObject.getString("result");
+                if (result.equals("OK")) {
+                    isOk = true;
+                    this.linkOk = true;
+                } else {
+                    errMessage = jObject.getString("error");
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            if (!isOk) {
+                txtStatus.setText("오류! 대상기기ID 정보가 올바르지 않습니다\n" + errMessage);
+                Toast.makeText(this, "오류! 대상기기ID 정보가 올바르지 않습니다\n" + errMessage, Toast.LENGTH_SHORT).show();
             } else {
                 txtStatus.setText("기기연결이 완료되었습니다.");
             }
@@ -212,7 +265,10 @@ public class Intro22Activity extends AppCompatActivity {
                 registerDevice(s);
             }
             else if (this.mode.equals("2")) {
-                linkParentDevice(s);
+                registerDeviceAccessCode(s);
+            }
+            else if (this.mode.equals("3")) {
+                getDeviceStatus(s);
             }
         }
 
