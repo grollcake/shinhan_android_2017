@@ -60,18 +60,24 @@ public class Intro21Activity extends AppCompatActivity {
     private void registerDevice(String s) {
         if (s.equals("REQUEST")) {
             JSONObject param = new JSONObject();
+            JSONObject com = new JSONObject();
             try {
+                com.put("deviceid", "NEW");
+                com.put("targetid", "NEW");
+                com.put("accesscode", "");
                 param.put("cmd", "device_register");
+                param.put("com", com);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
             String paramStr = param.toString();
             Log.d("param", paramStr);
 
-            new ServiceCall("1").execute("http://ifwind.cf:5000/pinkcar", paramStr);
+            new ServiceCall("1").execute("http://ifwind.cf:50000/pinkcar", paramStr);
         }
 
         else  {
+            boolean isOk = false;
             JSONObject jObject = null;
             try {
                 jObject = new JSONObject(s);
@@ -80,9 +86,16 @@ public class Intro21Activity extends AppCompatActivity {
                 txtDeviceId.setText(deviceid);
                 this.deviceId = deviceid;
                 editPw.setEnabled(true);
+                isOk = true;
 
             } catch (JSONException e) {
                 e.printStackTrace();
+            }
+            if (isOk) {
+                txtStatus.setText("기기ID를 할당 받았습니다.\n제어코드를 입력해주세요.");
+            } else {
+                txtStatus.setText("오류! 기기ID를 할당받지 못했습니다");
+                Toast.makeText(this, "오류! 기기ID를 할당받지 못했습니다.", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -95,10 +108,10 @@ public class Intro21Activity extends AppCompatActivity {
             JSONObject biz = new JSONObject();
             try {
                 param.put("cmd", "device_register");
-
                 com.put("deviceid", deviceId);
+                com.put("targetid", deviceId);
+                com.put("accesscode", "");
                 param.put("com", com);
-
                 biz.put("accesscode", accessCode);
                 param.put("biz", biz);
             } catch (JSONException e) {
@@ -107,7 +120,7 @@ public class Intro21Activity extends AppCompatActivity {
             String paramStr = param.toString();
             Log.d("param", paramStr);
 
-            new ServiceCall("2").execute("http://ifwind.cf:5000/pinkcar", paramStr);
+            new ServiceCall("2").execute("http://ifwind.cf:50000/pinkcar", paramStr);
         } 
         
         else {
@@ -120,8 +133,6 @@ public class Intro21Activity extends AppCompatActivity {
                 if (result.equals("OK")) {
                     String serverResponseAccessCode = jObject.getJSONObject("data").getString("accesscode");
                     if (accessCode.equals(serverResponseAccessCode)) {
-                        Toast.makeText(this, "제어코드를 등록했습니다", Toast.LENGTH_SHORT).show();
-
                         // 데이타 저장
                         ss.put("Main", "Role", "Parent");
                         ss.put("Main", "DeviceID", deviceId);
@@ -139,7 +150,10 @@ public class Intro21Activity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            if (!isOk) {
+            if (isOk) {
+                txtStatus.setText("제어코드를 등록했습니다.");
+            } else {
+                txtStatus.setText("오류! 제어코드를 등록하지 못했습니다");
                 Toast.makeText(this, "오류! 제어코드를 등록하지 못했습니다", Toast.LENGTH_SHORT).show();
             }
         }
@@ -211,11 +225,9 @@ public class Intro21Activity extends AppCompatActivity {
             Log.d("server-response", s);
 
             if (this.mode.equals("1")) {
-                txtStatus.setText("기기ID를 할당 받았습니다.\n제어코드를 입력해주세요.");
                 registerDevice(s);
             }
             else if (this.mode.equals("2")) {
-                txtStatus.setText("제어코드를 등록했습니다.");
                 registerAccessCode(s);
             }
         }
