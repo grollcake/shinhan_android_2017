@@ -22,7 +22,7 @@ public class ParentMainActivity extends AppCompatActivity {
     private final Integer[] demoPhotos = {R.drawable.example1, R.drawable.example2, R.drawable.example3};
     private final String[] demoMessages = {"사랑하는 사람과 행복한 순간을 공유하세요",
                         "핑크 카네이션은 여러분의 행복을 바랍니다",
-                        "자녀분에게 사진을 보내달라 요청해보세요!"};
+                        "자녀분에게 사진을 요청해보세요!"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

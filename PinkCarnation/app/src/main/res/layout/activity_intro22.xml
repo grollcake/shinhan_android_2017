@@ -11,19 +11,29 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="20"
+        android:layout_weight="40"
         android:padding="30dp"
         android:src="@drawable/logo_full" />
 
-    <TextView
-        android:id="@+id/txtStatus"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="40"
-        android:gravity="center_vertical|center_horizontal"
-        android:text="기기ID를 생성 중입니다.."
-        android:textSize="18sp"
-        android:textColor="#f71da4"/>
+        android:layout_weight="30"
+        android:orientation="vertical"
+        android:gravity="center">
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/txtStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="기기ID를 생성 중입니다.."
+            android:textSize="18sp"
+            android:textColor="#f71da4"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -45,13 +55,13 @@
                 android:textColor="@android:color/black" />
 
             <EditText
-                android:id="@+id/editDeviceId"
+                android:id="@+id/editTargetId"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="60"
                 android:width="170dp"
                 android:background="@drawable/textbox"
-                android:hint="제어 대상기기ID를 입력하세요"
+                android:hint="대상 기기ID"
                 android:maxLines="1"
                 android:minLines="1"
                 android:padding="10dp"

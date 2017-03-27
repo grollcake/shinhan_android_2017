@@ -49,7 +49,7 @@
                 android:backgroundTint="@android:color/holo_orange_light"
                 android:text="대상기기"/>
             <TextView
-                android:id="@+id/txtDeviceName"
+                android:id="@+id/txtTargetId"
                 android:layout_width="0dp"
                 android:layout_weight="50"
                 android:layout_height="wrap_content"
@@ -112,7 +112,9 @@
                 android:layout_width="0dp"
                 android:layout_weight="50"
                 android:layout_height="200dp"
-                android:background="@drawable/textbox"/>
+                android:background="@drawable/textbox"
+                android:scaleType="centerCrop"
+                android:src="@drawable/example_effel"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="20"
@@ -133,7 +135,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="70"
                 android:layout_height="wrap_content"
-                android:text="잘 전송했습니다."/>
+                android:text="사진을 전송했습니다."/>
         </LinearLayout>
 
     </LinearLayout>
