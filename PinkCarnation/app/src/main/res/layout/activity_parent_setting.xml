@@ -241,16 +241,17 @@
                 android:textColor="#ffffff"
                 android:backgroundTint="@android:color/holo_orange_light"
                 android:text="기기ID"/>
+
             <TextView
                 android:id="@+id/option08"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
                 android:background="@drawable/textbox"
-                android:minLines="1"
-                android:maxLines="1"
                 android:gravity="center_vertical"
-                android:text=""/>
+                android:maxLines="1"
+                android:minLines="1"
+                android:padding="10dp"
+                android:text="" />
 
         </LinearLayout>
         <TextView

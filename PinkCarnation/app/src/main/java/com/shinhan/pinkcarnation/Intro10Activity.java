@@ -5,18 +5,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.shinhan.pinkcarnation.PinkcarSerivce.PinkcarApp;
+
 public class Intro10Activity extends AppCompatActivity {
 
-    // 쉐어드 프리퍼런스 접근 클래스
-    SimpleStorage ss = null;
+    PinkcarApp APP = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro10);
-
-        // 쉐어드 프리퍼런스 초기화
-        ss = new SimpleStorage(this);
+        APP = (PinkcarApp) getApplication();
     }
 
     public void btnChildClicked(View view) {

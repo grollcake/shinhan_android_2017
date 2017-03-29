@@ -5,25 +5,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.shinhan.pinkcarnation.PinkcarSerivce.PinkcarApp;
+
 public class Intro30Activity extends AppCompatActivity {
-    // 쉐어드 프리퍼런스 접근 클래스
-    SimpleStorage ss = null;
+    PinkcarApp APP = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro30);
-
-        // 쉐어드 프리퍼런스 초기화
-        ss = new SimpleStorage(this);
+        APP = (PinkcarApp) getApplication();
     }
 
     public void btnNextClicked(View view) {
-        String role = ss.get("Main", "Role", "");
+
+        APP.put("Main", "IntroDone", "Yes");
 
         Intent intent = null;
 
-        if (role.equals("Parent")) {
+        if (APP.Role.equals("Parent")) {
             intent = new Intent(this, ParentMainActivity.class);
         } else {
             intent = new Intent(this, ChildMainActivity.class);

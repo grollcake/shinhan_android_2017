@@ -11,6 +11,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.shinhan.pinkcarnation.PinkcarSerivce.PinkcarApp;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -21,8 +23,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class Intro22Activity extends AppCompatActivity {
-    // 쉐어드 프리퍼런스 접근 클래스
-    SimpleStorage ss = null;
+    PinkcarApp APP = null;
 
     // 화면 UI 객체 선언
     EditText editAccessCode = null;
@@ -39,9 +40,7 @@ public class Intro22Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro22);
-
-        // 쉐어드 프리퍼런스 초기화
-        ss = new SimpleStorage(this);
+        APP = (PinkcarApp) getApplication();
 
         // 화면 UI 객체 변수할당
         editTargetId = (EditText) findViewById(R.id.editTargetId);
@@ -65,11 +64,11 @@ public class Intro22Activity extends AppCompatActivity {
         }
 
         // 데이타 저장
-        ss.put("Main", "Role", "Child");
-        ss.put("Main", "DeviceID", this.deviceId);
-        ss.put("Main", "TargetID", this.targetId);
-        ss.put("Main", "AccessCode", this.accessCode);
-        ss.put("Main", "IntroDone", "Yes");
+        APP.put("Main", "Role", "Child");
+        APP.put("Main", "DeviceID", this.deviceId);
+        APP.put("Main", "TargetID", this.targetId);
+        APP.put("Main", "AccessCode", this.accessCode);
+        APP.put("Main", "IntroDone", "Yes");
 
         // 페이지 이동
         Intent intent = new Intent(this, Intro30Activity.class);

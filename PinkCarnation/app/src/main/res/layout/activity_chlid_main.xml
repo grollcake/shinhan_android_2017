@@ -113,8 +113,7 @@
                 android:layout_weight="50"
                 android:layout_height="200dp"
                 android:background="@drawable/textbox"
-                android:scaleType="centerCrop"
-                android:src="@drawable/example_effel"/>
+                android:scaleType="centerCrop"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="20"

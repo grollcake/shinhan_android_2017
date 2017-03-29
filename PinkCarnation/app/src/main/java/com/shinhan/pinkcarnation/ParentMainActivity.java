@@ -9,11 +9,12 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.shinhan.pinkcarnation.PinkcarSerivce.PinkcarApp;
+
 import org.w3c.dom.Text;
 
 public class ParentMainActivity extends AppCompatActivity {
-    // 쉐어드 프리퍼런스 접근 클래스
-    SimpleStorage ss = null;
+    PinkcarApp APP = null;
 
     // 화면 UI 요소들
     ImageButton btnSettings = null;
@@ -29,8 +30,7 @@ public class ParentMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parent_main);
 
-        // 쉐어드 프리퍼런스 초기화
-        ss = new SimpleStorage(this);
+        APP = (PinkcarApp) getApplication();
 
 
         btnSettings = (ImageButton) findViewById(R.id.settings_icon);

@@ -9,18 +9,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-public class ChildSettingActivity extends AppCompatActivity {
+import com.shinhan.pinkcarnation.PinkcarSerivce.PinkcarApp;
 
-    // 쉐어드 프리퍼런스 접근 클래스
-    SimpleStorage ss = null;
+public class ChildSettingActivity extends AppCompatActivity {
+    PinkcarApp APP = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_child_setting);
-
-        // 쉐어드 프리퍼런스 초기화
-        ss = new SimpleStorage(this);
+        APP = (PinkcarApp) getApplication();
     }
 
     public void btnBackClicked(View view) {
@@ -33,7 +31,7 @@ public class ChildSettingActivity extends AppCompatActivity {
                 false).setPositiveButton("Yes",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        ss.clear("Main");
+                        APP.clear("Main");
                         Toast.makeText (ChildSettingActivity.this,
                                 "초기화 되었습니다. 첫 화면으로 이동합니다.", Toast.LENGTH_SHORT).show();
 

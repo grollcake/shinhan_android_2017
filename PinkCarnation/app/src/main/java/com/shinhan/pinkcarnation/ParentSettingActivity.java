@@ -7,35 +7,33 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.shinhan.pinkcarnation.PinkcarSerivce.PinkcarApp;
+
 public class ParentSettingActivity extends AppCompatActivity {
 
-    // 쉐어드 프리퍼런스 접근 클래스
-    SimpleStorage ss = null;
+    PinkcarApp APP = null;
 
     // UI 객체 선언
     TextView txtDeviceId = null;
-    TextView txtAccessCode = null;
+    TextView txtDevicePw = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parent_setting);
 
-        // 쉐어드 프리퍼런스 초기화
-        ss = new SimpleStorage(this);
+        APP = (PinkcarApp) getApplication();
 
         // UI 객체 할당
         txtDeviceId = (TextView)findViewById(R.id.option08);
-        txtAccessCode = (TextView)findViewById(R.id.option09);
+        txtDevicePw = (TextView)findViewById(R.id.option09);
 
         // UI 초기 데이타 세팅
-        txtDeviceId.setText(ss.get("Main", "DeviceID", ""));
-        txtAccessCode.setText(ss.get("Main", "AccessCode", ""));
+        txtDeviceId.setText(APP.DeviceID);
+        txtDevicePw.setText(APP.DevicePW);
     }
 
 
@@ -45,7 +43,7 @@ public class ParentSettingActivity extends AppCompatActivity {
                 false).setPositiveButton("Yes",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        ss.clear("Main");
+                        APP.clear("Main");
                         Toast.makeText (ParentSettingActivity.this,
                                 "초기화 되었습니다. 첫 화면으로 이동합니다.", Toast.LENGTH_SHORT).show();
 

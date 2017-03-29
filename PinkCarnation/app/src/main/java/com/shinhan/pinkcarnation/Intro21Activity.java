@@ -1,6 +1,5 @@
 package com.shinhan.pinkcarnation;
 
-import android.app.ProgressDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Intent;
@@ -9,10 +8,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.shinhan.pinkcarnation.PinkcarSerivce.HttpCallBack;
+import com.shinhan.pinkcarnation.PinkcarSerivce.HttpService;
+import com.shinhan.pinkcarnation.PinkcarSerivce.PinkcarApp;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,16 +29,16 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class Intro21Activity extends AppCompatActivity {
-    // 쉐어드 프리퍼런스 접근 클래스
-    SimpleStorage ss = null;
 
-    String deviceId = null;
-    String accessCode = null;
+    PinkcarApp APP = null;
 
     // 화면 UI 요소들
-    TextView txtDeviceId = null;
+    LinearLayout grpDeviceId = null;
     TextView txtStatus = null;
-    EditText editPw = null;
+    TextView txtDeviceId = null;
+    EditText edtDevicePw = null;
+    Button btnRegister = null;
+    Button btnNext = null;
     ProgressBar progressBar = null;
 
     @Override
@@ -41,236 +46,101 @@ public class Intro21Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro21);
 
-        // 쉐어드 프리퍼런스 초기화
-        ss = new SimpleStorage(this);
+        APP = (PinkcarApp) getApplication();
 
         // 화면 UI 요소들 변수에 할당
-        txtDeviceId = (TextView)findViewById(R.id.txtDeviceid);
+        grpDeviceId = (LinearLayout) findViewById(R.id.grpDeviceId);
         txtStatus = (TextView)findViewById(R.id.txtStatus);
-        editPw = (EditText)findViewById(R.id.editPw);
+        txtDeviceId = (TextView)findViewById(R.id.txtDeviceId);
+        edtDevicePw = (EditText)findViewById(R.id.edtDevicePw);
+        btnRegister = (Button)findViewById(R.id.btnRegister);
+        btnNext = (Button)findViewById(R.id.btnNext);
         progressBar = (ProgressBar)findViewById(R.id.progressBar);
 
         // 화면 UI 요소 초기상태 세팅
-        editPw.setEnabled(false);
+        grpDeviceId.setVisibility(View.INVISIBLE);
+        btnNext.setVisibility(View.INVISIBLE);
+        txtStatus.setText("비밀번호를 생성해야 합니다\n숫자 6자리로 입력하세요");
 
-
-        registerDevice("REQUEST");
+        // 시작
+        doMain();
     }
 
-    private void registerDevice(String s) {
-        if (s.equals("REQUEST")) {
-            JSONObject param = new JSONObject();
-            JSONObject com = new JSONObject();
-            try {
-                com.put("deviceid", "NEW");
-                com.put("targetid", "NEW");
-                com.put("accesscode", "");
-                param.put("cmd", "device_register");
-                param.put("com", com);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            String paramStr = param.toString();
-            Log.d("param", paramStr);
+    private void doMain() {
 
-            new ServiceCall("1").execute("http://ifwind.cf:50000/pinkcar", paramStr);
-        }
-
-        else  {
-            boolean isOk = false;
-            JSONObject jObject = null;
-            try {
-                jObject = new JSONObject(s);
-                JSONObject data = jObject.getJSONObject("data");
-                String deviceid = data.getString("deviceid");
-                txtDeviceId.setText(deviceid);
-                this.deviceId = deviceid;
-                editPw.setEnabled(true);
-                isOk = true;
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            if (isOk) {
-                txtStatus.setText("기기ID를 할당 받았습니다.\n제어코드를 입력해주세요.");
-            } else {
-                txtStatus.setText("오류! 기기ID를 할당받지 못했습니다");
-                Toast.makeText(this, "오류! 기기ID를 할당받지 못했습니다.", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
-    private void registerAccessCode(String s) {
-        if (s.equals("REQUEST")) {
-            // 제어코드(패스워드) 등록
-            JSONObject param = new JSONObject();
-            JSONObject com = new JSONObject();
-            JSONObject biz = new JSONObject();
-            try {
-                param.put("cmd", "device_register");
-                com.put("deviceid", deviceId);
-                com.put("targetid", deviceId);
-                com.put("accesscode", "");
-                param.put("com", com);
-                biz.put("accesscode", accessCode);
-                param.put("biz", biz);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            String paramStr = param.toString();
-            Log.d("param", paramStr);
-
-            new ServiceCall("2").execute("http://ifwind.cf:50000/pinkcar", paramStr);
-        } 
-        
-        else {
-            boolean isOk = false;
-            JSONObject jObject = null;
-            try {
-                jObject = new JSONObject(s);
-                String result = jObject.getString("result");
-                
-                if (result.equals("OK")) {
-                    String serverResponseAccessCode = jObject.getJSONObject("data").getString("accesscode");
-                    if (accessCode.equals(serverResponseAccessCode)) {
-                        // 데이타 저장
-                        ss.put("Main", "Role", "Parent");
-                        ss.put("Main", "DeviceID", deviceId);
-                        ss.put("Main", "AccessCode", accessCode);
-                        ss.put("Main", "IntroDone", "Yes");
-
-                        // 다음 화면으로 이동
-                        Intent intent = new Intent(this, Intro30Activity.class);
-                        startActivity(intent);
-
-                        isOk = true;
-                    }
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            if (isOk) {
-                txtStatus.setText("제어코드를 등록했습니다.");
-            } else {
-                txtStatus.setText("오류! 제어코드를 등록하지 못했습니다");
-                Toast.makeText(this, "오류! 제어코드를 등록하지 못했습니다", Toast.LENGTH_SHORT).show();
-            }
-        }
     }
 
     public void btnNextClicked(View view) {
-
-        deviceId = txtDeviceId.getText().toString();
-        accessCode = editPw.getText().toString();
-
-        if (deviceId == null || deviceId.isEmpty()) {
-            Toast.makeText(this, "오류! 기기ID를 할당받아야 합니다.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if (accessCode == null || accessCode.isEmpty()) {
-            Toast.makeText(this, "오류! 제어코드를 입력하셔야 합니다.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if (accessCode.length() != 6) {
-            Toast.makeText(this, "오류! 제어코드는 6자리로 입력해야 합니다.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        registerAccessCode("REQUEST");
+        Intent intent = new Intent(this, Intro30Activity.class);
+        startActivity(intent);
     }
 
     public void btnCopyClicked(View view) {
+        String deviceId = txtDeviceId.getText().toString();
         if (deviceId != null && !deviceId.equals("")) {
             ClipboardManager clipboard = (ClipboardManager) getSystemService(this.CLIPBOARD_SERVICE);
             ClipData clip = ClipData.newPlainText("Pinkcar", deviceId);
             clipboard.setPrimaryClip(clip);
-            Toast.makeText(this, "기기ID를 복사했습니다.\n카톡 등으로 자녀에게 전달해주세요", Toast.LENGTH_SHORT).show();
+            APP.toast("기기ID를 복사했습니다.\n카톡 등으로 자녀에게 전달해주세요");
         } else {
-            Toast.makeText(this, "복사할 기기ID 값이 없습니다.", Toast.LENGTH_SHORT).show();
+            APP.toast("복사할 기기ID 값이 없습니다");
         }
     }
 
-
-    class ServiceCall extends AsyncTask<String, String, String> {
-
-        String mode = null;
-
-        ServiceCall(String mode) {
-            this.mode = mode;
+    public void btnRegisterClicked(View view) {
+        if (edtDevicePw.getText().toString().length() != 6 ) {
+            APP.toast("비밀번호를 6자리로 입력하세요");
+            return;
         }
 
-        // 백그라운드 작업 들어가기 직전에 처리되는 부분
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            if (this.mode.equals("1")) {
-                txtStatus.setText("기기ID를 요청중입니다.\n잠시만 기다려주세요.");
-            }
-            else if (this.mode.equals("2")) {
-                txtStatus.setText("패스워드를 등록 중입니다. 잠시만 기다려주세요.");
-            }
-            progressBar.setVisibility(View.VISIBLE);
+        deviceRegister();
+    }
+
+    private void deviceRegister () {
+        // 신규 기기의 패스워드를 등록하고 기기ID를 받아온다.
+        JSONObject biz = new JSONObject();
+        try {
+            biz.put("devicepw", edtDevicePw.getText().toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+            APP.toast("오류! " + e.getMessage());
+            return;
         }
 
-        // 백그라운드 작업 종료 후 처리되는 부분
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-
-            progressBar.setVisibility(View.INVISIBLE);
-
-            Log.d("server-response", s);
-
-            if (this.mode.equals("1")) {
-                registerDevice(s);
-            }
-            else if (this.mode.equals("2")) {
-                registerAccessCode(s);
-            }
-        }
-
-        // 실제 통신이 처리되는 부분
-        @Override
-        protected String doInBackground(String... params) {
-            StringBuilder output = new StringBuilder();
-
-            // 통신 부분은 반드시 try-catch로 예외처리 한다.
-            try {
-                URL url = new URL(params[0]); // 전달받은 urlString으로 url 객체 생성
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                if (conn != null) {
-                    conn.setConnectTimeout(10 * 1000);
-                    conn.setRequestMethod("POST");
-                    conn.setDoInput(true);
-                    conn.setDoOutput(true);
-
-                    // set request json params
-                    DataOutputStream wr = new DataOutputStream (conn.getOutputStream ());
-                    wr.writeBytes (params[1]);
-                    wr.flush ();
-                    wr.close ();
-
-                    int resCode = conn.getResponseCode();
-                    if (resCode >= 200 && resCode < 400) {
-                        BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                        String line;
-                        // 한줄씩 읽어들여서 StringBuffer 객체에 추가
-                        while ((line = reader.readLine()) != null) {
-                            output.append(line);
-                        }
-                        reader.close();
-                    }
-                    conn.disconnect();
+        APP.HttpService("device_register", biz, new HttpCallBack() {
+            @Override
+            public void callback(Integer resCode, String resMessage, String error) {
+                if (error != null) {
+                    APP.toast("서버오류! " + error);
+                    return;
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
 
-            return output.toString();
-        }
+                try {
+                    JSONObject jsonRes = new JSONObject(resMessage);
+                    String result = jsonRes.getString("result");
+                    if (result.equals("OK")) {
+                        JSONObject jsonData = jsonRes.getJSONObject("data");
+                        String deviceId = jsonData.getString("deviceid");
+                        String devicePw = jsonData.getString("devicepw");
+
+                        // 앱환경으로 저장
+                        APP.put("Main", "Role", "Parent");
+                        APP.put("Main", "DevicePW", deviceId);
+                        APP.put("Main", "DevicePW", devicePw);
+
+                        // 기기ID와 다음 버튼 화면에 표시
+                        txtDeviceId.setText(APP.DeviceID);
+                        grpDeviceId.setVisibility(View.VISIBLE);
+                        btnNext.setVisibility(View.VISIBLE);
+                        edtDevicePw.setEnabled(false);
+                        btnRegister.setVisibility(View.INVISIBLE);
+                        txtStatus.setText("기기를 등록했습니다\n발급된 기기ID를 복사하여 전달하세요");
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
 
